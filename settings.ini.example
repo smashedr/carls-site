@@ -9,7 +9,7 @@ level = INFO
 file = django.log
 
 [Api]
-github_uri = http://api.carls.site/github-token/
+github_uri = https://api.carls.site/github-token/
 
 [Discord]
 invite_url = https://discord.gg/0yszLpzgnsyTBpj1
