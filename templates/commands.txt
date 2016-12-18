@@ -46,6 +46,8 @@ General:
   serverinfo     Shows server's informations
   8              Ask 8 ball a question
   flip           Flips a coin... or a user.
+GitHub:
+  github         GitHub API in Discord
 Google:
   google         Search Google
 Image:
