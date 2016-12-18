@@ -1,4 +1,5 @@
 {% extends "main.html" %}
+{% load staticfiles %}
 {% block python_active %}active{% endblock %}
 {% block title %}GitHub{% endblock %}
 
@@ -7,43 +8,35 @@
 
 {% block body %}
 
-	<div>
-
-		{% if pgdata.success %}
-			<div class="alert alert-success">
-				<strong>Success!</strong> You have authorized GitHub.
-			</div>
-			<div class="panel panel-default">
-				<table class="table">
-					<tr>
-						<td>code</td>
-						<td>{{ pgdata.ghdata.code }}</td>
-					</tr>
-					<tr>
-						<td>state</td>
-						<td>{{ pgdata.ghdata.state }}</td>
-					</tr>
-					<tr>
-						<td>access_token</td>
-						<td>{{ pgdata.ghdata.access_token }}</td>
-					</tr>
-				</table>
-			</div>
-		{% else %}
-			<div class="alert alert-danger">
-				<strong>Error:</strong> {{ pgdata.error }}
-			</div>
-		{% endif %}
-
-		<div>
-			<ul>
-				<li><a href="https://github.com/settings/applications" target="_blank">
-					Manage GitHub Authorizations
-				</a></li>
-				<li><a href="{% url 'home' %}">Go Home</a></li>
-			</ul>
+	{% if pgdata.success %}
+		<div class="alert alert-success">
+			<strong>Success!</strong> You have authorized GitHub.
 		</div>
+		<p>
+			You should now be able to use the GitHub commands. For additional assistance, please inquire <a href="{% url 'discord' %}">on Discord</a>.
+		</p>
+	{% else %}
+		<div class="alert alert-danger">
+			<strong>Error:</strong> {{ pgdata.error }}
+		</div>
+		<p>
+			If you need additional assistance with this error, please inquire <a href="{% url 'discord' %}">on Discord</a>.
+		</p>
+	{% endif %}
 
+	<div>
+		<ul>
+			<li>
+				<a href="https://github.com/settings/applications" target="_blank">
+					GitHub Authorizations
+				</a>
+				(to revoke access)
+			</li>
+			<li><a href="{% url 'home' %}">Go Home</a></li>
+			<a href="{% url 'home' %}"><img src="{% static 'images/logo.png' %}"></a>
+		</ul>
 	</div>
+
+	<p><em>Note: This feature is currently in Beta and may require re-authorization or change at any time.</em></p>
 
 {% endblock %}

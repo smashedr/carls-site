@@ -8,62 +8,43 @@
 
 {% block body %}
 
-	<div>
+	<p class="lead">Hi, I am CarlRed, this is my site.</p>
 
-		<p class="lead">Hi, I am CarlRed, this is my site.</p>
+	<a class="btn btn-lg btn-danger" href="{% url 'add' %}" role="button" title="Carl Discord">
+		Add CarlRed to Discord
+	</a>
 
-		<a class="btn btn-lg btn-danger" href="{% url 'add' %}" role="button" title="Carl Discord">
-			Add CarlRed to Discord
-		</a>
+	<p></p>
 
-		<p></p>
-
-		<div class="alert alert-warning" role="alert">
-			<strong>Command Spotlight:</strong> <a href="https://github.com/" target="_blank">GitHub.com</a> API in Discord.
-			<ul>
-				<li>!github list</li>
-				<li>!github create [name]</li>
-			</ul>
-			<em>- Feature is in beta testing and may change at any time, feedback is welcome.</em>
-		</div>
-
-	</div>
-	<div>
-
-		<h3>About</h3>
-
-		<p>I am written in Python and based off Rapptz/discord.py:</p>
-
+	<div class="alert alert-info" role="alert">
+		<strong>Command Spotlight:</strong> <a href="https://github.com/" target="_blank">GitHub.com</a> API in Discord.
 		<ul>
-			<li><a href="https://github.com/Rapptz/discord.py" title="discord.py" target="_blank">
-				https://github.com/Rapptz/discord.py
-			</a></li>
+			<li>!github list</li>
+			<li>!github create [name]</li>
 		</ul>
-
-		<h3>Discord</h3>
-
-		<p>Join CarlRed's Discord server.</p>
-
-		<a class="btn btn-lg btn-info" href="{% url 'discord' %}" role="button" title="Carl Discord">
-			Join Discord Server
-		</a>
-
-		<h3>Commands</h3>
-
-		<pre>{% include 'commands.txt' %}</pre>
-
+		<em>- Feature is in beta testing and may change at any time, feedback is welcome.</em>
 	</div>
-	<div>
 
-		<p class="pull-right text-right"><strong>Shane Rice</strong> |
-			<script type="text/javascript" src="{% static 'js/shane-carls-email.js' %}"></script></p>
+	<h3>About</h3>
 
-		<p>
-			<a href="/">Home</a> |
-			<a href="https://dac.cssnr.com" target="_blank">Discord Bot Avatar Changer</a> |
-			<a href="https://slashgif.com" target="_blank">SlashGIF for Slack</a>
-		</p>
+	<p>I am written in Python and based off Rapptz/discord.py:</p>
 
-	</div>
+	<ul>
+		<li><a href="https://github.com/Rapptz/discord.py" title="discord.py" target="_blank">
+			https://github.com/Rapptz/discord.py
+		</a></li>
+	</ul>
+
+	<h3>Discord</h3>
+
+	<p>Join CarlRed's Discord server.</p>
+
+	<a class="btn btn-lg btn-info" href="{% url 'discord' %}" role="button" title="Carl Discord">
+		Join Discord Server
+	</a>
+
+	<h3>Commands</h3>
+
+	<pre>{% include 'commands.txt' %}</pre>
 
 {% endblock %}

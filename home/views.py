@@ -27,11 +27,6 @@ def github(request):
             access_token = results['access_token'][0]
             ship_it(state, access_token)
             if ship_it:
-                pgdata['ghdata'] = {
-                    'code': code,
-                    'state': state,
-                    'access_token': access_token,
-                }
                 pgdata['success'] = True
             else:
                 pgdata['error'] = 'Unable to verify request.'
