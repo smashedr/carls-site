@@ -1,0 +1,76 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Meta -->
+	<meta name="author" content="Shane Rice">
+	<meta name="title" content="CarlRed's Site - A Discord Bot"/>
+	<meta name="description" content="Add CarlRed to Your Discord Server, Join Carl's Discord Server, or Check Out the Commands.">
+	<meta name="keywords" content="CarlRed's Site,Carls Site,Discord Bot,Carl Bot,Carl Discord Bot,Discord Python Bot">
+
+	<meta property="og:author" content="Shane Rice">
+	<meta property="og:title" content="CarlRed's Site - A Discord Bot">
+	<meta property="og:description" content="Add CarlRed to Your Discord Server, Join Carl's Discord Server, or Check Out the Commands.">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="http://{{ request.META.HTTP_HOST }}{% url "home" %}">
+	<meta property="og:image" content="http://{{ request.META.HTTP_HOST }}{% static "images/logo.png" %}">
+	<meta property="og:image:type" content="image/png">
+
+	<!-- Title -->
+	<title>Carl's Site - {% block title %}{% endblock %}</title>
+
+	<!-- Media -->
+	<link rel="icon" href="{% static "favicon.ico" %}">
+
+	<!-- CSS -->
+	<link href="{% static "bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
+
+	<!-- JS -->
+	<script type="text/javascript" src="{% static 'jquery/jquery-3.1.1.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+
+	<!-- Extra -->
+	<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+	{% block head %}{% endblock %}
+
+</head>
+<body>
+
+	<div class="container">
+		<div class="col-xs-8">
+
+			<h1>Carl's Site</h1>
+
+			{% block body %}{% endblock %}
+
+		</div>
+	</div>
+
+	<!-- Piwik -->
+	<script type="text/javascript">
+		var _paq = _paq || [];
+		_paq.push(["setDomains", ["*.carls.site"]]);
+		_paq.push(['trackPageView']);
+		_paq.push(['enableLinkTracking']);
+		(function() {
+			var u="//stats.cssnr.com/";
+			_paq.push(['setTrackerUrl', u+'piwik.php']);
+			_paq.push(['setSiteId', 13]);
+			var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+			g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+		})();
+	</script>
+	<noscript><p><img src="//stats.cssnr.com/piwik.php?idsite=13" style="border:0;" alt="" /></p></noscript>
+	<!-- End Piwik Code -->
+
+</body>
+</html>

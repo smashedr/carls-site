@@ -1,0 +1,40 @@
+{% extends "main.html" %}
+{% block python_active %}active{% endblock %}
+{% block title %}GitHub{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+
+	<div>
+
+		{% if pgdata.success %}
+			<div class="alert alert-success">
+				<strong>Success!</strong> You have authorized GitHub.
+			</div>
+			<div class="panel panel-default">
+				<table class="table">
+					<tr>
+						<td>code</td>
+						<td>{{ pgdata.ghdata.code }}</td>
+					</tr>
+					<tr>
+						<td>state</td>
+						<td>{{ pgdata.ghdata.state }}</td>
+					</tr>
+					<tr>
+						<td>access_token</td>
+						<td>{{ pgdata.ghdata.access_token }}</td>
+					</tr>
+				</table>
+			</div>
+		{% else %}
+			<div class="alert alert-danger">
+				<strong>Error:</strong> {{ pgdata.error }}
+			</div>
+		{% endif %}
+
+	</div>
+
+{% endblock %}

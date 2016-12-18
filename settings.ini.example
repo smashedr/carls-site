@@ -1,0 +1,20 @@
+[App]
+debug = True
+secret = xxxxxxxxxxxxxxxxxxxxxxxxx
+allowed_hosts = localhost
+static_root = C:\tmp
+
+[Logging]
+level = INFO
+file = django.log
+
+[Api]
+github_uri = http://api.carls.site/github-token/
+
+[Discord]
+invite_url = https://discord.gg/0yszLpzgnsyTBpj1
+add_url = https://discordapp.com/oauth2/authorize?&client_id=187324428231770112&scope=bot&permissions=3072
+
+[GitHub]
+client_id = xxxxxxxxxx
+client_secret = xxxxxxxxxxxxxxxxxxxx

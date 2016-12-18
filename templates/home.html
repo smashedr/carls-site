@@ -1,0 +1,56 @@
+{% extends "main.html" %}
+{% load staticfiles %}
+{% block home_active %}active{% endblock %}
+{% block title %}Home{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+
+	<div>
+
+		<p class="lead">Hi, I am CarlRed, this is my site.</p>
+
+		<a class="btn btn-lg btn-danger" href="{% url 'add' %}" role="button" title="Carl Discord">
+			Add CarlRed to Discord
+		</a>
+
+	</div>
+	<div>
+
+		<h3>About</h3>
+
+		<p>I am written in Python and based off Rapptz/discord.py:</p>
+
+		<ul>
+			<li><a href="https://github.com/Rapptz/discord.py" title="discord.py" target="_blank">https://github.com/Rapptz/discord.py</a></li>
+		</ul>
+
+		<h3>Discord</h3>
+
+
+		<p>Join CarlRed's Discord server.</p>
+
+		<a class="btn btn-lg btn-info" href="{% url 'discord' %}" role="button" title="Carl Discord">Join Discord Server</a>
+
+
+		<h3>Commands</h3>
+
+		<pre>{% include 'commands.txt' %}</pre>
+
+	</div>
+	<div>
+
+		<p class="pull-right text-right"><strong>Shane Rice</strong> |
+			<script type="text/javascript" src="{% static 'js/shane-carls-email.js' %}"></script></p>
+
+		<p>
+			<a href="/">Home</a> |
+			<a href="https://dac.cssnr.com" target="_blank">Discord Bot Avatar Changer</a> |
+			<a href="https://slashgif.com" target="_blank">SlashGIF for Slack</a>
+		</p>
+
+	</div>
+
+{% endblock %}
