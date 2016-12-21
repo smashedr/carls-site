@@ -11,6 +11,7 @@
 	<p class="lead">Hi, I am CarlRed, this is my site.</p>
 
 	<a class="btn btn-lg btn-danger" href="{% url 'add' %}" role="button" title="Carl Discord">
+		<i class="fa fa-user-plus" aria-hidden="true"></i>
 		Add CarlRed to Discord
 	</a>
 
@@ -23,7 +24,16 @@
 			<li>!github create [name]</li>
 			<li>!github hook [add, delete, show]</li>
 		</ul>
-		<em>- Feature is in beta testing and may change at any time, feedback is welcome.</em>
+		<p></p>
+		<p><em>- Feature is in beta testing and may change at any time, feedback is welcome.</em></p>
+		<p class="lead">
+			<strong>
+				<a href="{% url 'github' %}">
+					<i class="fa fa-github" aria-hidden="true"></i>
+					CLICK HERE FOR MORE INFORMATION!
+				</a>
+			</strong>
+		</p>
 	</div>
 
 	<h3>About</h3>
@@ -41,6 +51,7 @@
 	<p>Join CarlRed's Discord server.</p>
 
 	<a class="btn btn-lg btn-info" href="{% url 'discord' %}" role="button" title="Carl Discord">
+		<i class="fa fa-users" aria-hidden="true"></i>
 		Join Discord Server
 	</a>
 

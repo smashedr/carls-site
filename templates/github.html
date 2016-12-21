@@ -14,35 +14,63 @@
 				<div class="alert alert-success">
 					<strong>Success!</strong> You have authorized GitHub.
 				</div>
-				<p>
-					You should now be able to use the GitHub commands. For additional assistance,
-					please inquire <a href="{% url 'discord' %}">on Discord</a>.
-				</p>
 			{% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
 				<div class="alert alert-danger">
 					<strong>Error:</strong> {{ message }}
 				</div>
-				<p>
-					If you need additional assistance with this error, please inquire
-					<a href="{% url 'discord' %}">on Discord</a>.
-				</p>
 			{% endif %}
 		{% endfor %}
 	{% endif %}
 
-	<div>
-		<ul>
-			<li>
-				<a href="https://github.com/settings/applications" target="_blank">
-					GitHub Authorizations
-				</a>
-				(to revoke access)
-			</li>
-			<li><a href="{% url 'home' %}">Go Home</a></li>
-			<a href="{% url 'home' %}"><img src="{% static 'images/logo.png' %}"></a>
-		</ul>
-	</div>
+	<p class="lead">
+		If you need additional assistance, please <a href="{% url 'discord' %}">
+		<i class="fa fa-info-circle" aria-hidden="true"></i> inquire on Discord</a>.
+	</p>
 
-	<p><em>Note: This feature is currently in Beta and may require re-authorization or change at any time.</em></p>
+	<ul>
+		<li><a href="{% url 'home' %}">
+			<i class="fa fa-home" aria-hidden="true"></i>
+			Go Home
+		</a></li>
+		<li>
+			<a href="https://github.com/settings/applications" target="_blank">
+				<i class="fa fa-github" aria-hidden="true"></i>
+				GitHub Authorizations
+			</a>
+		</li>
+	</ul>
+
+	<p><em>Note: GitHub feature is currently in Beta and may require re-authorization or change at any time.</em></p>
+
+	<div>
+		<h2>GitHub Webhooks <small>Event Notifications in Discord</small></h2>
+
+		<p>This allows you to receive GitHub notifications, such as push, commit, comment etc. in real time to your Discord.</p>
+		<ul>
+			<li>Can create a webhook for any discord channel to use with any GitHub repository.</li>
+			<li>This does not use Discord webhooks, but requires the Manage Webhooks permission on the server.</li>
+		</ul>
+
+		<h3>Creating Webhooks in Discord</h3>
+		<img src="{% static 'images/github/hook-add.png' %}" class="img-thumbnail">
+		<p></p>
+		<img src="{% static 'images/github/hook-msg.png' %}" class="img-thumbnail">
+		<h3>Adding Webhooks to GitHub</h3>
+
+		<ol>
+			<li>Browse to your repository page on <a href="https://github.com/" target="_blank">github.com</a>.</li>
+			<li>Click on the <i class="fa fa-cog" aria-hidden="true"></i> <strong>Settings</strong> tab.</li>
+			<li>Choose the <strong>Webhooks</strong> link from the left.</li>
+			<li>Click the <strong>Add Webhook</strong> button in the top right.</li>
+			<li>Enter the <strong>Payload URL</strong> provided by CarlRed in Discord.</li>
+			<li>Do not modify Content type. This should be application/json.</li>
+			<li>Do not enter a Secret. This should be blank.</li>
+			<li>Optional: Select which events you would like to receive.</li>
+			<li>Click the <strong>Add Webhook</strong> button.</li>
+		</ol>
+
+		<h3>Example Configuration</h3>
+		<img src="{% static 'images/github/webhook-example.png' %}" class="img-responsive">
+	</div>
 
 {% endblock %}
