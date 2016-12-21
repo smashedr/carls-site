@@ -8,13 +8,14 @@ static_root = C:\tmp
 level = INFO
 file = django.log
 
-[Api]
-github_uri = https://api.carls.site/github/token/
+[Carl]
+api_uri = https://api.carls.site/github/token/
 
 [Discord]
 invite_url = https://discord.gg/0yszLpzgnsyTBpj1
 add_url = https://discordapp.com/oauth2/authorize?&client_id=187324428231770112&scope=bot&permissions=3072
 
 [GitHub]
+base_url = https://github.com
 client_id = xxxxxxxxxx
 client_secret = xxxxxxxxxxxxxxxxxxxx

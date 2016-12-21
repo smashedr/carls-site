@@ -1,54 +1,72 @@
-from django.shortcuts import render
 import logging
 import requests
-from urllib.parse import parse_qs
+from django.shortcuts import render, redirect
+from django.contrib import messages
 from carls_site.settings import config
 
 logger = logging.getLogger(__name__)
 
 
 def home(request):
-    # View: /
-    pgdata = {'client_id': config.get('GitHub', 'client_id')}
-    return render(request, 'home.html', {
-        'pgdata': pgdata,
-    })
+    """
+    View: /
+    """
+    return render(request, 'home.html')
 
 
 def github(request):
-    # View: /github/
-    pgdata = {'success': False}
+    """
+    View: /github/
+    """
+    return render(request, 'github.html')
+
+
+def github_auth(request):
+    """
+    View: /github/auth/
+    """
     if 'code' in request.GET and 'state' in request.GET:
         code = request.GET['code']
         state = request.GET['state']
         try:
             results = github_token(code)
-            # save_token('shane', results)
-            access_token = results['access_token'][0]
+            access_token = results['access_token']
             ship_it(state, access_token)
             if ship_it:
-                pgdata['success'] = True
+                messages.add_message(
+                    request, messages.SUCCESS,
+                    'Account Authorized.',
+                )
             else:
-                pgdata['error'] = 'Unable to verify request.'
+                messages.add_message(
+                    request, messages.ERROR,
+                    'Unable to verify request.',
+                )
         except Exception as error:
             logger.exception(error)
-            pgdata['error'] = error
+            messages.add_message(
+                request, messages.ERROR,
+                error,
+            )
     else:
-        pgdata['error'] = 'Unable to parse: code or state'
-
-    return render(request, 'github.html', {
-        'pgdata': pgdata,
-    })
+        messages.add_message(
+            request, messages.ERROR,
+            'Unable to parse: code or state.',
+        )
+    return redirect('github')
 
 
 def ship_it(state, access_token):
+    """
+    Portable function to ship and verify access_token and state to carl-api
+    """
     try:
         logger.info(state + ' - ' + access_token)
         data = {
             'state': state,
             'access_token': access_token,
         }
-        r = requests.post(url=config.get('Api', 'github_uri'), data=data)
+        r = requests.post(url=config.get('Carl', 'api_uri'), data=data)
         response = r.json()
         if response['success']:
             return True
@@ -60,14 +78,17 @@ def ship_it(state, access_token):
 
 
 def github_token(code):
-    uri = 'https://github.com/login/oauth/access_token'
+    """
+    Post OAuth code to GitHub and parse response data
+    """
+    uri = '%s/login/oauth/access_token' % config.get('GitHub', 'base_url')
     data = {
         'client_id': config.get('GitHub', 'client_id'),
         'client_secret': config.get('GitHub', 'client_secret'),
         'code': code,
     }
-    r = requests.post(uri, data=data)
-    logger.info(r.text)
-    results = parse_qs(r.text)
+    headers = {'Accept': 'application/json'}
+    r = requests.post(uri, data=data, headers=headers)
+    results = r.json()
     logger.info(results)
     return results
