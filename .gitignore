@@ -6,4 +6,4 @@ venv/
 *.sqlite3
 robots.txt
 settings.ini
-google*.html
+*.log
