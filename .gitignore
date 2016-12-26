@@ -1,9 +1,9 @@
 .idea/
 *.iml
+.coverage
 __pycache__/
 *.pyc
 venv/
-*.sqlite3
-robots.txt
-settings.ini
 *.log
+settings.ini
+*.sqlite3
